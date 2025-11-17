@@ -22,6 +22,8 @@ push code to github or any platform
 
 then use render for hosting the api
 
+deployed to https://squ-euron-mongoapi.onrender.com
+
 
 MongoDB
 pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed
