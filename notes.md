@@ -29,3 +29,15 @@ MongoDB
 pymongo.errors.ServerSelectionTimeoutError: SSL handshake failed
 https://www.mongodb.com/community/forums/t/pymongo-errors-serverselectiontimeouterror-ssl-handshake-failed/150205
 02 Mar 2022 — That error is usually due to a configuration issue in MongoDB Atlas. When you connect from your localhost, there's no problem because MongoDB Atlas configures ...See more
+
+{
+  "message": "data deleted for DeleteResult({'n': 1, 'electionId': ObjectId('7fffffff0000000000000057'), 'opTime': {'ts': Timestamp(1763583283, 6), 't': 87}, 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1763583283, 6), 'signature': {'hash': b'\\xb1\\x16\\x03c\\xb8R\\x81\\x91Ds%\\xd5\\x11\\xcc\\xa5\\xd2\\x91\\xcb\\xf8Y', 'keyId': 7522907962252197890}}, 'operationTime': Timestamp(1763583283, 6)}, acknowledged=True)"
+}
+{
+  "message": "data deleted for DeleteResult({'n': 0, 'electionId': ObjectId('7fffffff0000000000000057'), 'opTime': {'ts': Timestamp(1763583366, 1), 't': 87}, 'ok': 1.0, '$clusterTime': {'clusterTime': Timestamp(1763583366, 1), 'signature': {'hash': b'\\xfcg\\xfas1\\x17\\x05O(\\xd8\\xdb\\x14\\xc4\\xd6\\xb0\\xda\\x04\\xb2\\xfc\\xf5', 'keyId': 7522907962252197890}}, 'operationTime': Timestamp(1763583366, 1)}, acknowledged=True)"
+}
+
+
+fastapi converts the inputs to the types you've defined. in this case, AssessmentQNASortOrder. class members are accessed with the dot notation:
+
+assessment_qna.sort_order
