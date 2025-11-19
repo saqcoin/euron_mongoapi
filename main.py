@@ -73,4 +73,4 @@ async def update_euron_name(to_update:euronupdate):
     query_filter = {'name' : to_update.findvalue}
     update_operation = { '$set' : { 'name' : to_update.setvalue }}
     result = await euron_data.update_one(query_filter, update_operation)
-    return {"message": f"No of documents found: {result.matched_count}\nNo of documents updated: {result.modified_count}"}
+    return {"message": f"No of documents found: {result.matched_count}; No of documents updated: {result.modified_count}"}
