@@ -20,9 +20,16 @@ app = FastAPI()
 
 class eurondata(BaseModel):
     name : str
-    phone: int
-    city : str
-    course : str
+    phone: int | None = None
+    city : str | None = None
+    course : str | None = None
+
+class eurondelete(BaseModel):
+    name : str
+
+class euronupdate(BaseModel):
+    findvalue : str
+    setvalue : str
 
 @app.post("/euron/insert")
 async def euron_data_insert_helper(data:eurondata):
@@ -52,3 +59,18 @@ async def show_euron_data():
     async for document in cursor:
         items.append(euron_helper(document))
     return items
+
+@app.post("/euron/deletedata")
+async def delete_euron_data(to_delete:eurondelete):
+    """You need to provide only name in order to delete"""
+    query_filter = { "name": to_delete.name }
+    # delete the document as selected via query_filter
+    result = await euron_data.delete_one(query_filter)
+    return {"message": f"No of documents deleted: {result.deleted_count}"}
+
+@app.post("/euron/updatename")
+async def update_euron_name(to_update:euronupdate):
+    query_filter = {'name' : to_update.findvalue}
+    update_operation = { '$set' : { 'name' : to_update.setvalue }}
+    result = await euron_data.update_one(query_filter, update_operation)
+    return {"message": f"No of documents found: {result.matched_count}\nNo of documents updated: {result.modified_count}"}
